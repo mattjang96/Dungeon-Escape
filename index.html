@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="./player.js"></script>
     <style>
         * {
             padding: 0;
@@ -13,7 +14,7 @@
         }
     
         canvas {
-            background: #eee;
+            background: skyblue;
             display: block;
             margin: 0 auto;
         }
@@ -22,7 +23,7 @@
         }
     </style>
     <link rel=¨stylesheet¨ href=¨stylesheet.css¨>
-    <script src="player.js"></script>
+    <!-- <script src="player.js"></script> -->
 </head>
 
 <body>
@@ -61,85 +62,10 @@
     <script src="bullet.js"></script>
     <script src="ship.js"></script>
     <script src="game.js"></script> -->
-    <script>
-        var canvas = document.getElementById("canvas"),
-                ctx = canvas.getContext("2d");
-
-            // canvas.width = canvas.height = 300;
-
-            var x = 150,  //initial x
-                y = 150,  // initial y
-                velY = 0,
-                velX = 0,
-                speed = 2, // max speed
-                friction = 0.98, // friction
-                keys = [];
-
-            function update() {
-                requestAnimationFrame(update);
-
-                // check the keys and do the movement.
-                if (keys[38]) {
-                    if (velY > -speed) {
-                        velY--;
-                    }
-                }
-
-                if (keys[40]) {
-                    if (velY < speed) {
-                        velY++;
-                    }
-                }
-                if (keys[39]) {
-                    if (velX < speed) {
-                        velX++;
-                    }
-                }
-                if (keys[37]) {
-                    if (velX > -speed) {
-                        velX--;
-                    }
-                }
-
-                // apply some friction to y velocity.
-                velY *= friction;
-                y += velY;
-
-                // apply some friction to x velocity.
-                velX *= friction;
-                x += velX;
-
-                // bounds checking
-                if (x >= 995) {
-                    x = 995;
-                } else if (x <= 5) {
-                    x = 5;
-                }
-
-                if (y > 495) {
-                    y = 495;
-                } else if (y <= 5) {
-                    y = 5;
-                }
-
-                // do the drawing
-                ctx.clearRect(0, 0, 1000, 500);
-                ctx.beginPath();
-                ctx.arc(x, y, 5, 0, Math.PI * 2);
-                ctx.fill();
-            }
-
-            update();
-
-            // key events
-            document.body.addEventListener("keydown", function (e) {
-                keys[e.keyCode] = true;
-            });
-            document.body.addEventListener("keyup", function (e) {
-                keys[e.keyCode] = false;
-            });
-
-    </script> 
+    <script src="player.js"></script>
+    <!-- <script>
+       
+    </script>  -->
     
 </body>
 
