@@ -2,41 +2,44 @@
 <html>
 
 <head>
-    <title>Ghost House</title>
+    <title>Dungeon Escape</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script type="text/javascript" src="./player.js"></script>
+   
     <style>
         * {
-            padding: 0;
+            padding: 0px;
             margin: 0;
         }
-    
+
         canvas {
-            background: skyblue;
+            /* background: skyblue; */
             display: block;
             margin: 0 auto;
+            padding: 0px;
         }
+
         body {
             padding: 10px;
         }
     </style>
-    <link rel=¨stylesheet¨ href=¨stylesheet.css¨>
+    <!-- <link rel=¨stylesheet¨ href=¨stylesheet.css¨> -->
     <!-- <script src="player.js"></script> -->
 </head>
 
 <body>
-    <h1>Ghost House</h1>
+    <h1>Escape the Dungeon!</h1>
 
-    <canvas id="canvas" width="1000" height="500"></canvas>
-
+    <!-- <canvas id="canvas" width="1000" height="500"></canvas> -->
+    <script type="text/javascript" src="./player.js"></script>
+    
     <div class="instructions">
-    <h2>Objective</h2>
-        Welcome to the Ghost House.
-    <h2>Controls</h2>
+        <h2>Objective</h2>
+        Welcome to the Dungeon. Slay as many monsters as you can! Slay 15 monsters to escape the dungeon.
+        <!-- <h2>Controls</h2> -->
     </div>
-
+    <h2>Controls</h2>
     <ul>
         <li>
             <strong>↑</strong> : Move Up
@@ -50,9 +53,6 @@
         <li>
             <strong>→</strong> : Move Right
         </li>
-        <li>
-            <strong>space</strong> : Pick Up Item
-        </li>
     </ul>
 
     <!-- <script src="keymaster.js"></script>
@@ -62,11 +62,10 @@
     <script src="bullet.js"></script>
     <script src="ship.js"></script>
     <script src="game.js"></script> -->
-    <script src="player.js"></script>
     <!-- <script>
        
     </script>  -->
-    
+    <!-- <script type="text/javascript" src="./player.js"></script> -->
 </body>
 
 </html>
