@@ -10,7 +10,7 @@ document.body.appendChild(canvas);
 // mainTheme.volume = 0.5;
 // mainTheme.play();
 
-var monsterDie = new Audio("oof.mp3");
+var monsterDie = new Audio("./audio/oof.mp3");
 monsterDie.volume = 0.6;
 
 // Load the background image
