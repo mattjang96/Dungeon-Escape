@@ -1,6 +1,3 @@
-
-
-// import _ from "lodash";
 // Create the canvas for the game to display in
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
