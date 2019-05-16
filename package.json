@@ -2,9 +2,15 @@
   "name": "dungeon-escape",
   "version": "1.0.0",
   "description": "",
-  "main": "player.js",
+  "main": "webpack.config.js",
+  "dependencies": {
+    "lodash": "^4.17.11",
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  },
+  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "webpack --watch --mode=development"
   },
   "repository": {
     "type": "git",
@@ -15,9 +21,5 @@
   "bugs": {
     "url": "https://github.com/mattjang96/Dungeon-Escape/issues"
   },
-  "homepage": "https://github.com/mattjang96/Dungeon-Escape#readme",
-  "devDependencies": {
-    "webpack": "^4.31.0",
-    "webpack-cli": "^3.3.2"
-  }
+  "homepage": "https://github.com/mattjang96/Dungeon-Escape#readme"
 }

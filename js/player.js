@@ -1,3 +1,6 @@
+
+
+// import _ from "lodash";
 // Create the canvas for the game to display in
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
@@ -42,7 +45,7 @@ monsterImage.src = "images/monster.png";
 
 // Create the game objects
 var hero = {
-    speed: 150 // movement speed of hero in pixels per second
+    speed: 120 // movement speed of hero in pixels per second
 };
 var monster = {};
 var monstersCaught = 0;
