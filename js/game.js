@@ -26,8 +26,11 @@ bgImage.src = "images/background.png";
 var heroReady = false;
 var heroImage = new Image();
 heroImage.onload = function () {
-    // show the here image
+    // show the hero image
     heroReady = true;
+    // show the hero at the center of the map @ start of the game
+    hero.x = canvas.width / 2;
+    hero.y = canvas.height / 2;
 };
 heroImage.src = "images/hero.png";
 
@@ -57,11 +60,8 @@ addEventListener("keyup", function (key) {
     delete keysDown[key.keyCode];
 }, false);
 
-// Reset the player and monster positions when player catches a monster
+// Reset the onster positions when player catches a monster
 var reset = function () {
-    // Reset player's position to centre of canvas
-    hero.x = canvas.width / 2;
-    hero.y = canvas.height / 2;
     // Place the monster somewhere on the canvas randomly
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
@@ -81,12 +81,10 @@ var update = function (modifier) {
     if (39 in keysDown) { // Player is holding right key
         hero.x += hero.speed * modifier;
     }
-    // Check if player and monster collider
+    // Check if player and monster collide
     if (
-        hero.x <= (monster.x + 32)
-        && monster.x <= (hero.x + 32)
-        && hero.y <= (monster.y + 32)
-        && monster.y <= (hero.y + 32)
+        hero.x <= (monster.x + 32) && monster.x <= (hero.x + 32)
+        && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)
     ) {
         monsterDie.pause();
         monsterDie.currentTime = 0;
@@ -109,15 +107,15 @@ var render = function () {
     }
     // Display score and time 
     ctx.fillStyle = "rgb(250, 250, 250)";
-    ctx.font = "20px Helvetica";
+    ctx.font = "18px Helvetica";
     ctx.textAlign = "justify";
     ctx.textBaseline = "top";
-    ctx.fillText("Monsters caught: " + monstersCaught, 20, 20);
+    ctx.fillText("Monsters slain: " + monstersCaught, 20, 20);
     ctx.fillText("Time: " + count, 20, 50);
     // Display game over message when timer finished
-    if (finished == true && monstersCaught >= 15) {
-        ctx.fillText("Congrats, You escaped safely!", 120, 220);
-    } else if(finished == true && monstersCaught < 15) {
+    if (finished == true && monstersCaught >= 17) {
+        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monstersCaught} monsters.`, 30, 220);
+    } else if(finished == true && monstersCaught < 17) {
         ctx.fillText("You've failed to escape! Try again.", 110, 200);
     }
 
@@ -134,7 +132,7 @@ var counter = function () {
         // set game to finished
         finished = true;
         count = 0;
-        // hider monster and hero
+        // hide monster and hero
         monsterReady = false;
         heroReady = false;
     }
@@ -157,3 +155,4 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 // Let's play this game!
 reset();
 main();
+
