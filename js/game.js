@@ -1,19 +1,20 @@
-// Create the canvas for the game to display in
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
 document.body.appendChild(canvas);
 
-// var mainTheme = new Audio("oof.mp3");
-// mainTheme.loop = true;
-// mainTheme.volume = 0.5;
-// mainTheme.play();
+var mainMusic = new Audio("./audio/music.mp3");
+mainMusic.loop = true;
+mainMusic.volume = 0.4;
 
-var monsterDie = new Audio("./audio/oof.mp3");
-monsterDie.volume = 0.6;
+var gameOver = new Audio("./audio/gameOver.mp3");
+gameOver.loop = true;
+gameOver.volume = 0.5;
 
-// Load the background image
+var monsterSound = new Audio("./audio/monsterSound.mp3");
+monsterSound.volume = 0.6;
+
 var bgReady = false;
 var bgImage = new Image();
 bgImage.onload = function () {
@@ -23,16 +24,16 @@ bgImage.onload = function () {
 bgImage.src = "images/background.png";
 
 // Load the hero image
-var heroReady = false;
-var heroImage = new Image();
-heroImage.onload = function () {
+var charReady = false;
+var charImage = new Image();
+charImage.onload = function () {
     // show the hero image
-    heroReady = true;
+    charReady = true;
     // show the hero at the center of the map @ start of the game
     hero.x = canvas.width / 2;
     hero.y = canvas.height / 2;
 };
-heroImage.src = "images/hero.png";
+charImage.src = "images/hero.png";
 
 // Load the monster image
 var monsterReady = false;
@@ -65,6 +66,7 @@ var reset = function () {
     // Place the monster somewhere on the canvas randomly
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
+
 };
 
 // Update game objects - change player position based on key pressed
@@ -86,9 +88,9 @@ var update = function (modifier) {
         hero.x <= (monster.x + 32) && monster.x <= (hero.x + 32)
         && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)
     ) {
-        monsterDie.pause();
-        monsterDie.currentTime = 0;
-        monsterDie.play();
+        monsterSound.pause();
+        monsterSound.currentTime = 0;
+        monsterSound.play();
         ++monstersCaught;
         reset();
     }
@@ -96,11 +98,12 @@ var update = function (modifier) {
 
 // Draw everything on the canvas
 var render = function () {
+    mainMusic.play(); // cue the music!
     if (bgReady) {
         ctx.drawImage(bgImage, 0, 0);
     }
-    if (heroReady) {
-        ctx.drawImage(heroImage, hero.x, hero.y);
+    if (charReady) {
+        ctx.drawImage(charImage, hero.x, hero.y);
     }
     if (monsterReady) {
         ctx.drawImage(monsterImage, monster.x, monster.y);
@@ -111,35 +114,39 @@ var render = function () {
     ctx.textAlign = "justify";
     ctx.textBaseline = "top";
     ctx.fillText("Monsters slain: " + monstersCaught, 20, 20);
-    ctx.fillText("Time: " + count, 20, 50);
+    ctx.fillText("Time: " + time, 20, 50);
     // Display game over message when timer finished
-    if (finished == true && monstersCaught >= 17) {
-        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monstersCaught} monsters.`, 30, 220);
-    } else if(finished == true && monstersCaught < 17) {
-        ctx.fillText("You've failed to escape! Try again.", 110, 200);
+    if (finished == true && monstersCaught >= 18) {
+        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monstersCaught} monsters.`, 50, 220);mainMusic.play();
+        mainMusic.pause();
+        gameOver.play();
+    } else if(finished == true && monstersCaught < 18) {
+        ctx.fillText("You've failed to escape! Try again.", 118, 200);
+        mainMusic.pause();
+        gameOver.play();
     }
 
 };
-var count = 30; // how many seconds the game lasts for - default 30
+var time = 35; // how many seconds the game lasts for - default 30
 var finished = false;
-var counter = function () {
-    count = count - 1; // countown by 1 every second
-    // when count reaches 0 clear the timer, hide monster and
+var timer = function () {
+    time = time - 1; // timeown by 1 every second
+    // when time reaches 0 clear the timer, hide monster and
     // hero and finish the game
-    if (count <= 0) {
+    if (time <= 0) {
         // stop the timer
-        clearInterval(counter);
+        clearInterval(timer);
         // set game to finished
         finished = true;
-        count = 0;
+        time = 0;
         // hide monster and hero
         monsterReady = false;
-        heroReady = false;
+        charReady = false;
     }
 }
 
 // timer interval is every second (1000ms)
-setInterval(counter, 1000);
+setInterval(timer, 1000);
 // The main game loop
 var main = function () {
     // run the update function
