@@ -31,8 +31,8 @@
 <body>
     <h1>Escape the Dungeon!</h1>
 
-    <canvas id="canvas" width="1000" height="500"></canvas>
-    <script type="text/javascript" src="./bundle.js"></script>
+    <!-- <canvas id="canvas" width="1000" height="500"></canvas> -->
+    <script type="text/javascript" src="./js/game.js"></script>
 
     <div class="instructions">
         <h2>Objective</h2>
@@ -54,17 +54,11 @@
             <strong>→</strong> : Move Right
         </li>
     </ul>
-
-    <!-- <script src="keymaster.js"></script>
-    <script src="inherits.js"></script>
-    <script src="moving_object.js"></script>
-    <script src="asteroid.js"></script>
-    <script src="bullet.js"></script>
-    <script src="ship.js"></script>
-    <script src="game.js"></script> -->
-    <!-- <script>
-       
-    </script>  -->
+    
+    <script>
+       var canvas = document.getElementsByTagName('canvas')[0];
+       new Asteroids.Game(canvas.getContext('2d')).start();
+    </script> 
     <!-- <script type="text/javascript" src="./player.js"></script> -->
 </body>
 
