@@ -2,7 +2,7 @@
 
 Dungeon Escape is a JavaScript and HTML5 canvas based game. Integrates an object-oriented Javascript game structure with the smooth rendering of HTML5 canvas to recreate a classic retro game experience.
 
-Dungeon Escape was designed and implemented within a 5-day timeframe. Regardless, this is still an ongoing project, with more features left to be implemented. 
+Dungeon Escape was designed and implemented within a 4-day timeframe. Regardless, this is still an ongoing project, with more features left to be implemented. 
 
 Thanks for visiting!
 
