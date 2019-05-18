@@ -115,6 +115,14 @@ Upon a successful collision, the `update(modifier)` function will call the `rese
 var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
+    obs.x = 32 + Math.random() * (canvas.width - 64);
+    obs.y = 32 + Math.random() * (canvas.width - 64);
+    obs1.x = 32 + Math.random() * (canvas.width - 64);
+    obs1.y = 32 + Math.random() * (canvas.width - 64);
+    obs2.x = 32 + Math.random() * (canvas.width - 64);
+    obs2.y = 32 + Math.random() * (canvas.width - 64);
+    obs3.x = 32 + Math.random() * (canvas.width - 64);
+    obs3.y = 32 + Math.random() * (canvas.width - 64);
 };
 ```
 The same idea applies to dragons.
