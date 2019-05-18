@@ -1,3 +1,5 @@
+// Rendering
+
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
@@ -49,6 +51,7 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
+// Game Logic
 
 var hero = {
     speed: 125 
@@ -123,7 +126,7 @@ var render = function () {
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
-    } else if(finished == true && monsterSlain < 20) {
+    } else if (finished == true && monsterSlain < 20) {
         ctx.fillText("You've failed to escape! Try again.", 118, 200);
         mainMusic.pause();
         mainMusic.currentTime = 0;
@@ -156,7 +159,7 @@ var main = function () {
     update(0.02); 
 
     render();
-
+    
     requestAnimationFrame(main);
 };
 
