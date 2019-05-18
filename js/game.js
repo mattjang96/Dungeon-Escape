@@ -7,20 +7,20 @@ document.body.appendChild(canvas);
 
 var mainMusic = new Audio("./audio/music.mp3");
 mainMusic.loop = true;
-mainMusic.volume = 0.4;
+mainMusic.volume = 0.3;
 
 
 var gameOver = new Audio("./audio/gameOver.mp3");
 gameOver.loop = true;
-gameOver.volume = 0.5;
+gameOver.volume = 0.4;
 
 var gameWin = new Audio("./audio/gameWin.mp3");
 gameWin.loop = true;
-gameWin.volume = 0.5;
+gameWin.volume = 0.4;
 
 
 var monsterSound = new Audio("./audio/monsterSound.mp3");
-monsterSound.volume = 0.6;
+monsterSound.volume = 0.5;
 
 
 var bgReady = false;
@@ -51,7 +51,7 @@ monsterImage.src = "images/monster.png";
 
 
 var hero = {
-    speed: 120 
+    speed: 125 
 };
 var monster = {};
 var monsterSlain = 0;
@@ -118,12 +118,12 @@ var render = function () {
     ctx.fillText("Monsters slain: " + monsterSlain, 20, 20);
     ctx.fillText("Time: " + time, 20, 50);
 
-    if (finished == true && monsterSlain >= 18) {
+    if (finished == true && monsterSlain >= 20) {
         ctx.fillText(`Congrats, You escaped safely! Slayed: ${monsterSlain} monsters.`, 50, 220);mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
-    } else if(finished == true && monsterSlain < 18) {
+    } else if(finished == true && monsterSlain < 20) {
         ctx.fillText("You've failed to escape! Try again.", 118, 200);
         mainMusic.pause();
         mainMusic.currentTime = 0;
