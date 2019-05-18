@@ -122,7 +122,7 @@ var render = function () {
     ctx.fillText("Time: " + time, 20, 50);
 
     if (finished == true && monsterSlain >= 20) {
-        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monsterSlain} monsters.`, 50, 220);mainMusic.play();
+        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monsterSlain} monsters.`, 55, 220);mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
