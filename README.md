@@ -26,6 +26,7 @@ Slay them for a chance to break for freedom ... or be trapped forever!
 
 ## Implementation
 ### Basic Rendering
+The game starts off by rendering all of the necessary objects, including the map, characters, timer, etc. 
 ```javascript
 var render = function () {
     mainMusic.play(); // cue the music!
@@ -60,8 +61,7 @@ var render = function () {
 
 };
 ``` 
-The game starts off by rendering all of the necessary objects, including the map, characters, timer, etc. 
-The `render` function also takes care of the game over situation. If the player has successfully slain 20 or more monsters, they will escape safely. Otherwise, they will prompted to try again.
+The `render()` function also takes care of the game over situation. If the player has successfully slain 20 or more monsters, they will escape safely. Otherwise, they will prompted to try again.
 
 I've also requested that the game works across different browsers/platforms via the `requestAnimationFrame`.
 ```javascript
