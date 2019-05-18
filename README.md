@@ -120,3 +120,5 @@ var reset = function () {
 - Multiple (moving) enemies 
 - Monsters with different type, health, etc.
 - Items + Boosts
+
+Thanks for visiting!
