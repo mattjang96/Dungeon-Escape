@@ -1,11 +1,11 @@
 // Declaration of Variables
-var frames = 500;
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
 canvas.height = 480;
 document.body.appendChild(canvas);
-
+// var frames = 500,
+//   r = setInterval(randMov, frames);
 
 var mainMusic = new Audio("./audio/music.mp3");
 mainMusic.loop = true;
@@ -41,6 +41,7 @@ obsImage.onload = function() {
 
     obs.x = 32 + Math.random() * (canvas.width - 64);
     obs.y = 32 + Math.random() * (canvas.width - 64);
+    // obsPosition = (obs.x, obs.y);
 };
 obsImage.src = "images/obstacle.png";
 
@@ -71,9 +72,7 @@ var hero = {
 var monster = {};
 var monsterSlain = 0;
 // obstacle declare
-var obs = {
-    speed: 125
-};
+var obs = {};
 
 
 var keysDown = {};
@@ -88,37 +87,9 @@ addEventListener("keyup", function (key) {
 var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
+    obs.x = 32 + Math.random() * (canvas.width - 64);
+    obs.y = 32 + Math.random() * (canvas.width - 64);
 };
-
-// // obstacle random move function
-// var randMov = function () {
-//     var randDirection = Math.floor(Math.random() * 4 + 1);
-//     switch(randDirection) {
-//         case 1: {
-//             // if (obsY < rowCount && newPosition !== obsPosition) {
-//                 obsY++;
-//             // }
-//             break;
-//         }
-//         case 2: {
-//             // if (obsY > 1 && newPosition !== obsPosition) {
-//                 obsY--;
-//             // }
-//             break;
-//         }
-//         case 3: {
-//             // if (obsX < columnCount && newPosition !== obsPosition) {
-//                 obsX++;
-//             // }
-//             break;
-//         }
-//         case 4: {
-//             // if (obsX > 1 && newPosition !== obsPosition) {
-//                 obsX--;
-//             }
-//             // break;
-//         }
-// };
 
 var update = function (modifier) {
     if (38 in keysDown) {
@@ -173,8 +144,8 @@ var render = function () {
     // if collide with obstacle, instant game over
     if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
       hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
-            finished = true; 
             time = 0;
+            finished = true; 
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
             mainMusic.pause();
             mainMusic.currentTime = 0;
