@@ -90,35 +90,35 @@ var reset = function () {
     monster.y = 32 + (Math.random() * (canvas.height - 64));
 };
 
-// obstacle random move function
-var randMov = function () {
-    var randDirection = Math.floor(Math.random() * 4 + 1);
-    switch(randDirection) {
-        case 1: {
-            // if (obsY < rowCount && newPosition !== obsPosition) {
-                obsY++;
-            // }
-            break;
-        }
-        case 2: {
-            // if (obsY > 1 && newPosition !== obsPosition) {
-                obsY--;
-            // }
-            break;
-        }
-        case 3: {
-            // if (obsX < columnCount && newPosition !== obsPosition) {
-                obsX++;
-            // }
-            break;
-        }
-        case 4: {
-            // if (obsX > 1 && newPosition !== obsPosition) {
-                obsX--;
-            }
-            // break;
-        }
-};
+// // obstacle random move function
+// var randMov = function () {
+//     var randDirection = Math.floor(Math.random() * 4 + 1);
+//     switch(randDirection) {
+//         case 1: {
+//             // if (obsY < rowCount && newPosition !== obsPosition) {
+//                 obsY++;
+//             // }
+//             break;
+//         }
+//         case 2: {
+//             // if (obsY > 1 && newPosition !== obsPosition) {
+//                 obsY--;
+//             // }
+//             break;
+//         }
+//         case 3: {
+//             // if (obsX < columnCount && newPosition !== obsPosition) {
+//                 obsX++;
+//             // }
+//             break;
+//         }
+//         case 4: {
+//             // if (obsX > 1 && newPosition !== obsPosition) {
+//                 obsX--;
+//             }
+//             // break;
+//         }
+// };
 
 var update = function (modifier) {
     if (38 in keysDown) {
@@ -174,6 +174,7 @@ var render = function () {
     if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
       hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
             finished = true; 
+            time = 0;
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
             mainMusic.pause();
             mainMusic.currentTime = 0;
