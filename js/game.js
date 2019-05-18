@@ -32,15 +32,16 @@ bgImage.onload = function () {
 };
 bgImage.src = "images/background.png";
 
-// var obsReady = false;
-// var obsImage = new Image();
-// obsImage.onload = function() {
-//     obsReady = true;
+// render obstacle
+var obsReady = false;
+var obsImage = new Image();
+obsImage.onload = function() {
+    obsReady = true;
 
-//     obs.x = // 32 + Math.random() * (canvas.width - 64);
-//     obs.y = // 32 + Math.random() * (canvas.width - 64);
-// };
-// obsImage.src = "images/obstacle.png"
+    obs.x = 32 + Math.random() * (canvas.width - 64);
+    obs.y = 32 + Math.random() * (canvas.width - 64);
+};
+obsImage.src = "images/obstacle.png";
 
 var charReady = false;
 var charImage = new Image();
@@ -67,6 +68,8 @@ var hero = {
 };
 var monster = {};
 var monsterSlain = 0;
+// obstacle 
+var obs = {};
 
 
 var keysDown = {};
@@ -128,9 +131,10 @@ var render = function () {
     if (monsterReady) {
         ctx.drawImage(monsterImage, monster.x, monster.y);
     }
-    // if (obsReady) {
-    //     ctx.drawImage(obsImage, obs.x, obs.y);
-    // }
+    // obstacle render
+    if (obsReady) {
+        ctx.drawImage(obsImage, obs.x, obs.y);
+    }
 
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "18px Helvetica";
