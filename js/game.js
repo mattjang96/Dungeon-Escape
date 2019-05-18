@@ -134,6 +134,7 @@ var render = function () {
     }
 
 };
+
 var time = 35; 
 var finished = false;
 var timer = function () {
@@ -159,7 +160,7 @@ var main = function () {
     update(0.02); 
 
     render();
-    
+
     requestAnimationFrame(main);
 };
 
