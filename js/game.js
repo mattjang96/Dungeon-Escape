@@ -128,6 +128,9 @@ var render = function () {
     if (monsterReady) {
         ctx.drawImage(monsterImage, monster.x, monster.y);
     }
+    // if (obsReady) {
+    //     ctx.drawImage(obsImage, obs.x, obs.y);
+    // }
 
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "18px Helvetica";
@@ -136,6 +139,7 @@ var render = function () {
     ctx.fillText("Dragons Rescued: " + monsterSlain, 20, 20);
     ctx.fillText("Time: " + time, 20, 50);
 
+    // // if collide with obstacle, instant game over
     // if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
     //   hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
             // finished = true; 
