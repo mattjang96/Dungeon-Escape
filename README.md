@@ -20,7 +20,7 @@ Slay them for a chance to break for freedom ... or be trapped forever!
 - Render canvas map & background image
 - Create characters: hero and monster, fluid keyboard movement
 - Randomly spawning monsters & moving obstacles 
-- Import audio: main music & monster death sound
+- Import audio: main music, monster death sound, game over music
 - Timer, and a counter of monsters slain
 - Game over messages
 
