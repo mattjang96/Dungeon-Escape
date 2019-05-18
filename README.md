@@ -8,7 +8,7 @@ Thanks for visiting!
 
 [Play Here](https://mattjang96.github.io/Dungeon-Escape/)
 
-![Game](https://s3-us-west-1.amazonaws.com/shuttr-dev-seeds/Dungeon.png)
+![Game](https://s3-us-west-1.amazonaws.com/shuttr-dev-seeds/dungeon.png)
 
 ## Gameplay
 On your quest to escape the dungeon, monsters stand in your way! 
