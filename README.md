@@ -13,7 +13,7 @@ Thanks for visiting!
 ## Gameplay
 On your quest to escape the dungeon, monsters stand in your way! 
 
-Slay them for a chance to break for freedom ... or be trapped forever!
+But first, you must rescue baby dragons for a chance to break for freedom ... or be trapped forever!
 
 ## Technology
 
@@ -22,10 +22,10 @@ Vanilla JavaScript, Web Audio API, HTML5 Canvas, (webpack entry file)
 ## Features 
 
 - Render canvas map & background image
-- Create characters: hero and monster, fluid keyboard movement
-- Randomly spawning monsters & moving obstacles 
-- Import audio: main music, monster death sound, game over music
-- Timer, and a counter of monsters slain
+- Create characters: hero, dragon, and monster, fluid keyboard movement
+- Randomly spawning dragons & monsters 
+- Import audio: main music, rescue music, game over music
+- Timer, and a counter of dragons rescued
 - Game over messages
 
 ## Implementation
@@ -65,7 +65,7 @@ var render = function () {
 
 };
 ``` 
-The `render()` function also takes care of the game over situation. If the player has successfully slain 20 or more monsters, they will escape safely. Otherwise, they will prompted to try again.
+The `render()` function also takes care of the game over situation. If the player has successfully rescues 15 or more dragons, they will escape safely. Otherwise, they will prompted to try again.
 
 I've also requested that the game works across different browsers/platforms via the `requestAnimationFrame`.
 ```javascript
@@ -110,13 +110,14 @@ var update = function (modifier) {
     }
 };
 ```
-Upon a successful collision, the `update(modifier)` function will call the `reset()` function every time, which randomly places a new monster anywhere within the map:
+Upon a successful collision, the `update(modifier)` function will call the `reset()` function every time, which randomly places new monsters anywhere within the map:
 ```javascript
 var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
 };
 ```
+The same idea applies to dragons.
 
 ## Further Improvements
 
