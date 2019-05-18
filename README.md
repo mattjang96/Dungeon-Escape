@@ -15,6 +15,10 @@ On your quest to escape the dungeon, monsters stand in your way!
 
 Slay them for a chance to break for freedom ... or be trapped forever!
 
+## Technology
+
+Vanilla JavaScript, Web Audio API, HTML5 Canvas, (webpack entry file)
+
 ## Features 
 
 - Render canvas map & background image
