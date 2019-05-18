@@ -8,6 +8,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
    
     <style>
+        h1 {
+            color: grey;
+            font-family: sans-serif;
+            /* align-items: center; */
+            /* align-content: center; */
+        }
+        h2 {
+            font-family: sans-serif;    
+        }
         * {
             padding: 0px;
             margin: 0;
@@ -23,43 +32,46 @@
         body {
             padding: 10px;
         }
+        p {
+            font-size: 18px;
+        }
+        nav-list {
+            font-family: sans-serif;
+            color: #ccc
+        }
+        a {
+            color: darkblue;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color: #ccc;
+        }
     </style>
     <!-- <link rel=¨stylesheet¨ href=¨stylesheet.css¨> -->
     <!-- <script src="player.js"></script> -->
 </head>
 
 <body>
-    <h1>Escape the Dungeon!</h1>
-
-    <!-- <canvas id="canvas" width="1000" height="500"></canvas> -->
+    <div class="center">
+    <h1 align="center">ESCAPE FROM THE DUNGEON</h1>
+    <br>
+    <h2 align="center">OBJECTIVE</h2>
+        <p align="center">Welcome to the Dungeon. Slay as many monsters as you can! Slay 18 monsters to escape the dungeon.</p>
+    <br>
     <script type="text/javascript" src="./js/game.js"></script>
-
-    <div class="instructions">
-        <h2>Objective</h2>
-        Welcome to the Dungeon. Slay as many monsters as you can! Slay 18 monsters to escape the dungeon.
-        <!-- <h2>Controls</h2> -->
     </div>
-    <h2>Controls</h2>
-    <ul>
-        <li>
-            <strong>↑</strong> : Move Up
-        </li>
-        <li>
-            <strong>↓</strong> : Move Down
-        </li>
-        <li>
-            <strong>←</strong> : Move Left
-        </li>
-        <li>
-            <strong>→</strong> : Move Right
-        </li>
-    </ul>
-
-    <!-- <script> -->
-    <!--     var canvas = document.getElementsByTagName('canvas')[0]; -->
-    <!--     new Asteroids.Game(canvas.getContext('2d')).start(); -->
-    <!-- </script>  -->
-    <!-- <script type="text/javascript" src="./player.js"></script> -->
 </body>
+    <br>
+    <div class="nav-list" align="center">
+        <span>
+            <a href="https://github.com/mattjang96/Dungeon-Escape">
+                GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/matthew-jang/">
+                LinkedIn
+            </a>
+        </span>
+    </div>
 
 </html>
