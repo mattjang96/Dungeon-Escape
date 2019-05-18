@@ -6,7 +6,7 @@ Dungeon Escape was designed and implemented within a 5-day timeframe. Regardless
 
 Thanks for visiting!
 
-[Play Here](https://dungeon-escape.herokuapp.com/)
+[Play Here](https://mattjang96.github.io/Dungeon-Escape/)
 
 ![Game](https://s3-us-west-1.amazonaws.com/shuttr-dev-seeds/dungeon.png)
 
