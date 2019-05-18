@@ -1,0 +1,70 @@
+// == Start Variables == //
+var x = 1,
+  y = 1,
+  columnCount = 10,
+  rowCount = 5,
+  newPosition = y + " / " + x,
+  player = document.getElementById("player"),
+  gate = document.getElementById("gate"),
+  gateInitialWidth = 5,
+  gateInitialDistance = columnCount - gateInitialWidth,
+  gateX = Math.floor(Math.random() * gateInitialWidth + gateInitialDistance),
+  gateY = Math.floor(Math.random() * rowCount + 1),
+  gatePosition = (gate.style.gridArea = gateY + " / " + gateX),
+  obstacle = document.getElementById("obstacle"),
+  obsX = columnCount - gateInitialWidth,
+  obsY = rowCount,
+  obsPosition = (obstacle.style.gridArea = obsY + " / " + obsX),
+  frames = 500,
+  r = setInterval(randMov, frames);
+// == End Variables == //
+
+// == Start Listeners == //
+document.addEventListener("keyup", right);
+document.addEventListener("keyup", left);
+document.addEventListener("keyup", up);
+document.addEventListener("keyup", down);
+// == End Listeners == //
+
+// == Start Functions == //
+function randMov() {
+  var randDirection = Math.floor(Math.random() * 4 + 1);
+  switch (randDirection) {
+    case 1: {
+      if (obsY < rowCount && newPosition !== obsPosition) {
+        obsY++;
+      }
+      break;
+    }
+    case 2: {
+      if (obsY > 1 && newPosition !== obsPosition) {
+        obsY--;
+      }
+      break;
+    }
+    case 3: {
+      if (obsX < columnCount && newPosition !== obsPosition) {
+        obsX++;
+      }
+      break;
+    }
+    case 4: {
+      if (obsX > 1 && newPosition !== obsPosition) {
+        obsX--;
+      }
+      break;
+    }
+  }
+  obsPosition = obstacle.style.gridArea = obsY + " / " + obsX;
+  check();
+}
+
+
+
+function check() {
+  if (newPosition == obsPosition) {
+    clearInterval(r);
+    alert("Game Over !");
+    var restartGame = confirm("Restart ?");
+    
+// == End Functions == //

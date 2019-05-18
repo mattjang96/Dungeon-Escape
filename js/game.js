@@ -1,5 +1,4 @@
-// Rendering
-
+// Declaration of Variables
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
@@ -15,6 +14,7 @@ mainMusic.volume = 0.3;
 var gameOver = new Audio("./audio/gameOver.mp3");
 gameOver.loop = true;
 gameOver.volume = 0.4;
+
 
 var gameWin = new Audio("./audio/gameWin.mp3");
 gameWin.loop = true;
@@ -32,6 +32,15 @@ bgImage.onload = function () {
 };
 bgImage.src = "images/background.png";
 
+// var obsReady = false;
+// var obsImage = new Image();
+// obsImage.onload = function() {
+//     obsReady = true;
+
+//     obs.x = // 32 + Math.random() * (canvas.width - 64);
+//     obs.y = // 32 + Math.random() * (canvas.width - 64);
+// };
+// obsImage.src = "images/obstacle.png"
 
 var charReady = false;
 var charImage = new Image();
@@ -51,8 +60,8 @@ monsterImage.onload = function () {
 };
 monsterImage.src = "images/monster.png";
 
-// Game Logic
 
+// Game Logic
 var hero = {
     speed: 125 
 };
@@ -74,6 +83,12 @@ var reset = function () {
     monster.y = 32 + (Math.random() * (canvas.height - 64));
 };
 
+// var randMov = function () {
+//     var randDirection = Math.floor(Math.random() * 4 + 1);
+//     switch(randDirection) {
+
+//     }
+// };
 
 var update = function (modifier) {
     if (38 in keysDown) {
@@ -101,7 +116,7 @@ var update = function (modifier) {
     }
 };
 
-
+// Rendering
 var render = function () {
     mainMusic.play(); // cue the music!
     if (bgReady) {
@@ -118,11 +133,25 @@ var render = function () {
     ctx.font = "18px Helvetica";
     ctx.textAlign = "justify";
     ctx.textBaseline = "top";
-    ctx.fillText("Monsters slain: " + monsterSlain, 20, 20);
+    ctx.fillText("Dragons Rescued: " + monsterSlain, 20, 20);
     ctx.fillText("Time: " + time, 20, 50);
 
+    // if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
+    //   hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
+            // finished = true; 
+            // ctx.fillText("You've failed to escape! Try again.", 118, 200);
+            // mainMusic.pause();
+            // mainMusic.currentTime = 0;
+            // gameOver.play();
+    //   }
+
     if (finished == true && monsterSlain >= 20) {
-        ctx.fillText(`Congrats, You escaped safely! Slayed: ${monsterSlain} monsters.`, 55, 220);mainMusic.play();
+        ctx.fillText(
+          `Congrats, You escaped safely! Slayed: ${monsterSlain} monsters.`,
+          55,
+          220
+        );
+        mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
@@ -131,7 +160,7 @@ var render = function () {
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameOver.play();
-    }
+      }
 
 };
 
@@ -169,4 +198,5 @@ requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame
 
 reset();
 main();
+
 
