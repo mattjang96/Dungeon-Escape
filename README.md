@@ -15,6 +15,15 @@ On your quest to escape the dungeon, monsters stand in your way!
 
 Slay them for a chance to break for freedom ... or be trapped forever!
 
+## Features 
+
+- Render canvas map & background image
+- Create characters: hero and monster, fluid keyboard movement
+- Randomly spawning monsters & moving obstacles 
+- Import audio: main music & monster death sound
+- Timer, and a counter of monsters slain
+- Game over messages
+
 ## Implementation
 ### Basic Rendering
 ```javascript
@@ -52,18 +61,60 @@ var render = function () {
 };
 ``` 
 The game starts off by rendering all of the necessary objects, including the map, characters, timer, etc. 
+The `render` function also takes care of the game over situation. If the player has successfully slain 20 or more monsters, they will escape safely. Otherwise, they will prompted to try again.
 
+I've also requested that the game works across different browsers/platforms via the `requestAnimationFrame`.
+```javascript
+var w = window;
+requestAnimationFrame = w.requestAnimationFrame || w.webkitRequestAnimationFrame || w.msRequestAnimationFrame || w.mozRequestAnimationFrame;
+```
+### Displaying Sound
+Music was imported in the following manner:
+```javascript
+var mainMusic = new Audio("./audio/music.mp3");
+mainMusic.loop = true;
+mainMusic.volume = 0.3;
+```
+The `render` function above plays the music that the variable `mainMusic` calls on. Music can be easily controlled through functions like `.play()` and `.pause()`. 
 
-## Features 
+### Movement + Collision Check
+To allow player movement, and to check for collision between the player and the monster:
+```javascript  
+var update = function (modifier) {
+    if (38 in keysDown) {
+        hero.y -= hero.speed * modifier;
+    }
+    if (40 in keysDown) { 
+        hero.y += hero.speed * modifier;
+    }
+    if (37 in keysDown) {
+        hero.x -= hero.speed * modifier;
+    }
+    if (39 in keysDown) { 
+        hero.x += hero.speed * modifier;
+    }
 
-- Render canvas map & background image
-- Create characters: hero and monster, fluid keyboard movement
-- Randomly spawning monsters & moving obstacles 
-- Import audio: main music & monster death sound
-- Timer, and a counter of monsters slain
-- Game over messages
+    if (
+        hero.x <= (monster.x + 32) && monster.x <= (hero.x + 32)
+        && hero.y <= (monster.y + 32) && monster.y <= (hero.y + 32)
+    ) {
+        monsterSound.pause();
+        monsterSound.currentTime = 0;
+        monsterSound.play();
+        ++monsterSlain;
+        reset();
+    }
+};
+```
+Upon a successful collision, the `update(modifier)` function will call the `reset()` function every time, which randomly places a new monster anywhere within the map:
+```javascript
+var reset = function () {
+    monster.x = 32 + (Math.random() * (canvas.width - 64));
+    monster.y = 32 + (Math.random() * (canvas.height - 64));
+};
+```
 
-## Coming Soon
+## Further Improvements
 
 - Different levels with increasing difficulty
 - Multiple (moving) enemies 
