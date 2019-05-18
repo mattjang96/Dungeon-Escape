@@ -1,4 +1,5 @@
 // Declaration of Variables
+var frames = 500;
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 512;
@@ -8,7 +9,7 @@ document.body.appendChild(canvas);
 
 var mainMusic = new Audio("./audio/music.mp3");
 mainMusic.loop = true;
-mainMusic.volume = 0.3;
+mainMusic.volume = 0.4;
 
 
 var gameOver = new Audio("./audio/gameOver.mp3");
@@ -32,7 +33,7 @@ bgImage.onload = function () {
 };
 bgImage.src = "images/background.png";
 
-// render obstacle
+// declare obstacle
 var obsReady = false;
 var obsImage = new Image();
 obsImage.onload = function() {
@@ -43,6 +44,7 @@ obsImage.onload = function() {
 };
 obsImage.src = "images/obstacle.png";
 
+// declare hero
 var charReady = false;
 var charImage = new Image();
 charImage.onload = function () {
@@ -53,7 +55,7 @@ charImage.onload = function () {
 };
 charImage.src = "images/hero.png";
 
-
+// declare baby dragon
 var monsterReady = false;
 var monsterImage = new Image();
 monsterImage.onload = function () {
@@ -68,8 +70,10 @@ var hero = {
 };
 var monster = {};
 var monsterSlain = 0;
-// obstacle 
-var obs = {};
+// obstacle declare
+var obs = {
+    speed: 125
+};
 
 
 var keysDown = {};
@@ -86,12 +90,35 @@ var reset = function () {
     monster.y = 32 + (Math.random() * (canvas.height - 64));
 };
 
-// var randMov = function () {
-//     var randDirection = Math.floor(Math.random() * 4 + 1);
-//     switch(randDirection) {
-
-//     }
-// };
+// obstacle random move function
+var randMov = function () {
+    var randDirection = Math.floor(Math.random() * 4 + 1);
+    switch(randDirection) {
+        case 1: {
+            // if (obsY < rowCount && newPosition !== obsPosition) {
+                obsY++;
+            // }
+            break;
+        }
+        case 2: {
+            // if (obsY > 1 && newPosition !== obsPosition) {
+                obsY--;
+            // }
+            break;
+        }
+        case 3: {
+            // if (obsX < columnCount && newPosition !== obsPosition) {
+                obsX++;
+            // }
+            break;
+        }
+        case 4: {
+            // if (obsX > 1 && newPosition !== obsPosition) {
+                obsX--;
+            }
+            // break;
+        }
+};
 
 var update = function (modifier) {
     if (38 in keysDown) {
@@ -143,15 +170,15 @@ var render = function () {
     ctx.fillText("Dragons Rescued: " + monsterSlain, 20, 20);
     ctx.fillText("Time: " + time, 20, 50);
 
-    // // if collide with obstacle, instant game over
-    // if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
-    //   hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
-            // finished = true; 
-            // ctx.fillText("You've failed to escape! Try again.", 118, 200);
-            // mainMusic.pause();
-            // mainMusic.currentTime = 0;
-            // gameOver.play();
-    //   }
+    // if collide with obstacle, instant game over
+    if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
+      hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
+            finished = true; 
+            ctx.fillText("You've failed to escape! Try again.", 118, 200);
+            mainMusic.pause();
+            mainMusic.currentTime = 0;
+            gameOver.play();
+      }
 
     if (finished == true && monsterSlain >= 20) {
         ctx.fillText(
@@ -186,11 +213,13 @@ var timer = function () {
 
         monsterReady = false;
         charReady = false;
+        obsReady = false;
     }
 }
 
 
 setInterval(timer, 1000);
+// setInterval(randMov, frames);
 
 var main = function () {
 
