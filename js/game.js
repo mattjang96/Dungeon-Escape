@@ -87,6 +87,7 @@ addEventListener("keyup", function (key) {
 var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
+    // randMov();
     // make sure when the zombies respawn, that it is not colliding immediately with the hero position (hero.x, hero.y)
     // if (obs.x != hero.x) { obs.x = 32 + Math.random() * (canvas.width - 64); }
     // if (obs.y != hero.y) { obs.y = 32 + Math.random() * (canvas.width - 64); }
@@ -116,21 +117,25 @@ var randMov = function() {
               obs.x += 64;
             }
         }
+        break;
         case 2: {
             if (obs.x - 64 > 1) {
               obs.x -= 64;
             }
         }
+        break;
         case 3: {
             if (obs.y + 64 < canvas.width - 64) {
               obs.y += 64;
             }
         }
+        break;
         case 4: {
             if (obs.y - 64 > 1) {
               obs.y -= 64;
             }
         }
+        break;
     }
 };
 
@@ -218,8 +223,8 @@ var render = function () {
 var time = 35; 
 var finished = false;
 var timer = function () {
-    time = time - 1; 
     randMov();
+    time = time - 1; 
     if (time <= 0) {
 
         clearInterval(timer);
