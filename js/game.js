@@ -1,8 +1,8 @@
 // Declaration of Variables
 var canvas = document.createElement("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 512;
-canvas.height = 480;
+canvas.width = 512; // x
+canvas.height = 480; // y
 document.body.appendChild(canvas);
 // var frames = 500,
 //   r = setInterval(randMov, frames);
@@ -45,39 +45,6 @@ obsImage.onload = function() {
 };
 obsImage.src = "images/obstacle.png";
 
-var obs1Ready = false;
-var obs1Image = new Image();
-obs1Image.onload = function() {
-  obs1Ready = true;
-
-  obs1.x = 32 + Math.random() * (canvas.width - 64);
-  obs1.y = 32 + Math.random() * (canvas.width - 64);
-  // obsPosition = (obs.x, obs.y);
-};
-obs1Image.src = "images/obstacle.png";
-
-var obs2Ready = false;
-var obs2Image = new Image();
-obs2Image.onload = function() {
-  obs2Ready = true;
-
-  obs2.x = 32 + Math.random() * (canvas.width - 64);
-  obs2.y = 32 + Math.random() * (canvas.width - 64);
-  // obsPosition = (obs.x, obs.y);
-};
-obs2Image.src = "images/obstacle.png";
-
-var obs3Ready = false;
-var obs3Image = new Image();
-obs3Image.onload = function() {
-  obs3Ready = true;
-
-  obs3.x = 32 + Math.random() * (canvas.width - 64);
-  obs3.y = 32 + Math.random() * (canvas.width - 64);
-  // obsPosition = (obs.x, obs.y);
-};
-obs3Image.src = "images/obstacle.png";
-
 // declare hero
 var charReady = false;
 var charImage = new Image();
@@ -100,16 +67,12 @@ monsterImage.src = "images/monster.png";
 
 // Game Logic
 var hero = {
-    speed: 110
+    speed: 150
 };
 var monster = {};
 var monsterSlain = 0;
 // obstacle declare
-var obs = {};
-var obs1 = {};
-var obs2 = {};
-var obs3 = {};
-
+var obs = {speed: 150};
 
 var keysDown = {};
 addEventListener("keydown", function (key) {
@@ -119,19 +82,58 @@ addEventListener("keyup", function (key) {
     delete keysDown[key.keyCode];
 }, false);
 
+// var newPos = 32 + Math.random() * (canvas.width - 64);
 
 var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
-    obs.x = 32 + Math.random() * (canvas.width - 64);
-    obs.y = 32 + Math.random() * (canvas.width - 64);
-    obs1.x = 32 + Math.random() * (canvas.width - 64);
-    obs1.y = 32 + Math.random() * (canvas.width - 64);
-    obs2.x = 32 + Math.random() * (canvas.width - 64);
-    obs2.y = 32 + Math.random() * (canvas.width - 64);
-    obs3.x = 32 + Math.random() * (canvas.width - 64);
-    obs3.y = 32 + Math.random() * (canvas.width - 64);
+    // make sure when the zombies respawn, that it is not colliding immediately with the hero position (hero.x, hero.y)
+    // if (obs.x != hero.x) { obs.x = 32 + Math.random() * (canvas.width - 64); }
+    // if (obs.y != hero.y) { obs.y = 32 + Math.random() * (canvas.width - 64); }
+    // obs.x = 32 + Math.random() * (canvas.width - 64);
+    // obs.y = 32 + Math.random() * (canvas.width - 64);
+//    randMov();
+    // obs.y = randMov();
+    // if (obs1.x != hero.x) { obs1.x = 32 + Math.random() * (canvas.width - 64); }
+    // if (obs1.x != hero.x) { obs1.x = 32 + Math.random() * (canvas.width - 64); }
+    // obs1.x = 32 + Math.random() * (canvas.width - 64);
+    // obs1.y = 32 + Math.random() * (canvas.width - 64);
+    // if (obs2.x != hero.x) { obs2.x = 32 + Math.random() * (canvas.width - 64); }
+    // if (obs2.x != hero.x) { obs2.x = 32 + Math.random() * (canvas.width - 64); }
+    // obs2.x = 32 + Math.random() * (canvas.width - 64);
+    // obs2.y = 32 + Math.random() * (canvas.width - 64);
+    // if (obs3.x != hero.x) { obs3.x = 32 + Math.random() * (canvas.width - 64); }
+    // if (obs3.x != hero.x) { obs3.x = 32 + Math.random() * (canvas.width - 64); }
+    // obs3.x = 32 + Math.random() * (canvas.width - 64);
+    // obs3.y = 32 + Math.random() * (canvas.width - 64);
 };
+
+var randMov = function() {
+    var randDirection = Math.floor(Math.random() * 4 + 1);
+    switch (randDirection) {
+        case 1: {
+            if (obs.x < 512) {
+                obs.x += 64;
+            }
+        }
+        case 2: {
+            if (obs.x > 1) {
+              obs.x -= 64;
+            }
+        }
+        case 3: {
+            if (obs.y < 480) {
+              obs.y += 64;
+            }
+        }
+        case 4: {
+            if (obs.y > 1) {
+              obs.y -= 64;
+            }
+        }
+    }
+};
+
 
 var update = function (modifier) {
     if (38 in keysDown) {
@@ -175,15 +177,6 @@ var render = function () {
     if (obsReady) {
         ctx.drawImage(obsImage, obs.x, obs.y);
     }
-    if (obs1Ready) {
-      ctx.drawImage(obs1Image, obs1.x, obs1.y);
-    }
-    if (obs2Ready) {
-      ctx.drawImage(obs2Image, obs2.x, obs2.y);
-    }
-    if (obs3Ready) {
-      ctx.drawImage(obs3Image, obs3.x, obs3.y);
-    }
 
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "18px Helvetica";
@@ -195,35 +188,6 @@ var render = function () {
     // if collide with obstacle, instant game over
     if (hero.x <= obs.x + 32 && obs.x <= hero.x + 32 &&
       hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
-            time = 0;
-            finished = true; 
-            ctx.fillText("You've failed to escape! Try again.", 118, 200);
-            mainMusic.pause();
-            mainMusic.currentTime = 0;
-            gameOver.play();
-      }
-
-    if (hero.x <= obs1.x + 32 && obs1.x <= hero.x + 32 &&
-      hero.y <= obs1.y + 32 && obs1.y <= hero.y + 32) {
-            time = 0;
-            finished = true; 
-            ctx.fillText("You've failed to escape! Try again.", 118, 200);
-            mainMusic.pause();
-            mainMusic.currentTime = 0;
-            gameOver.play();
-      }
-    if (hero.x <= obs2.x + 32 && obs2.x <= hero.x + 32 &&
-      hero.y <= obs2.y + 32 && obs2.y <= hero.y + 32) {
-            time = 0;
-            finished = true; 
-            ctx.fillText("You've failed to escape! Try again.", 118, 200);
-            mainMusic.pause();
-            mainMusic.currentTime = 0;
-            gameOver.play();
-      }
-
-      if (hero.x <= obs3.x + 32 && obs3.x <= hero.x + 32 &&
-      hero.y <= obs3.y + 32 && obs3.y <= hero.y + 32) {
             time = 0;
             finished = true; 
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
@@ -255,7 +219,7 @@ var time = 35;
 var finished = false;
 var timer = function () {
     time = time - 1; 
-
+    randMov();
     if (time <= 0) {
 
         clearInterval(timer);
@@ -266,9 +230,6 @@ var timer = function () {
         monsterReady = false;
         charReady = false;
         obsReady = false;
-        obs1Ready = false;
-        obs2Ready = false;
-        obs3Ready = false;
     }
 }
 
