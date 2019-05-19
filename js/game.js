@@ -112,22 +112,22 @@ var randMov = function() {
     var randDirection = Math.floor(Math.random() * 4 + 1);
     switch (randDirection) {
         case 1: {
-            if (obs.x < 512) {
-                obs.x += 64;
+            if (obs.x + 64 < canvas.width - 64) {
+              obs.x += 64;
             }
         }
         case 2: {
-            if (obs.x > 1) {
+            if (obs.x - 64 > 1) {
               obs.x -= 64;
             }
         }
         case 3: {
-            if (obs.y < 480) {
+            if (obs.y + 64 < canvas.width - 64) {
               obs.y += 64;
             }
         }
         case 4: {
-            if (obs.y > 1) {
+            if (obs.y - 64 > 1) {
               obs.y -= 64;
             }
         }
