@@ -56,6 +56,17 @@ obs1Image.onload = function() {
 };
 obs1Image.src = "images/obstacle.png";
 
+var obs2Ready = false;
+var obs2Image = new Image();
+obs2Image.onload = function() {
+    obs2Ready = true;
+
+    obs2.x = 32 + Math.random() * (canvas.width - 64);
+    obs2.y = 32 + Math.random() * (canvas.width - 64);
+    // obsPosition = (obs.x, obs.y);
+};
+obs2Image.src = "images/obstacle.png";
+
 // declare hero
 var charReady = false;
 var charImage = new Image();
@@ -85,6 +96,7 @@ var monsterSlain = 0;
 // obstacle declare
 var obs = {speed: 150};
 var obs1 = {speed: 150};
+var obs2 = {speed: 150};
 
 var keysDown = {};
 addEventListener("keydown", function (key) {
@@ -127,31 +139,35 @@ var randMov = function() {
         case 1: {
             if (
               obs.x + 64 < canvas.width - 64 &&
-              obs1.x - 64 > 1
+              obs1.x - 64 > 1 && obs2.y + 64 < canvas.width - 64
             ) {
               obs.x += 64;
               obs1.x -= 64;
+              obs2.y +=64;
             }
         }
         break;
         case 2: {
-            if (obs.x - 64 > 1 && obs1.x + 64 < canvas.width - 64) {
+            if (obs.x - 64 > 1 && obs1.x + 64 < canvas.width - 64 && obs2.y - 64 > 1) {
               obs.x -= 64;
               obs1.x += 64;
+              obs2.y -= 64;
             }
         }
         break;
         case 3: {
-            if (obs.y + 64 < canvas.width - 64 && obs1.y - 64 > 1) {
+            if (obs.y + 64 < canvas.width - 64 && obs1.y - 64 > 1 && obs2.x + 64 < canvas.width - 64) {
               obs.y += 64;
               obs1.y -= 64;
+              obs2.x += 64;
             }
         }
         break;
         case 4: {
-            if (obs.y - 64 > 1 && obs1.y + 64 < canvas.width - 64) {
+            if (obs.y - 64 > 1 && obs1.y + 64 < canvas.width - 64 && obs2.x - 64 > 1) {
               obs.y -= 64;
               obs1.y += 64;
+              obs2.x -= 64;
             }
         }
         break;
@@ -205,6 +221,10 @@ var render = function () {
       ctx.drawImage(obs1Image, obs1.x, obs1.y);
     }
 
+    if (obs2Ready) {
+      ctx.drawImage(obs2Image, obs2.x, obs2.y);
+    }
+
     ctx.fillStyle = "rgb(250, 250, 250)";
     ctx.font = "18px Helvetica";
     ctx.textAlign = "justify";
@@ -225,6 +245,16 @@ var render = function () {
 
       if (hero.x <= obs1.x + 32 && obs1.x <= hero.x + 32 &&
       hero.y <= obs1.y + 32 && obs1.y <= hero.y + 32) {
+            time = 0;
+            finished = true; 
+            ctx.fillText("You've failed to escape! Try again.", 118, 200);
+            mainMusic.pause();
+            mainMusic.currentTime = 0;
+            gameOver.play();
+      }
+
+      if (hero.x <= obs2.x + 32 && obs2.x <= hero.x + 32 &&
+      hero.y <= obs2.y + 32 && obs2.y <= hero.y + 32) {
             time = 0;
             finished = true; 
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
@@ -268,6 +298,7 @@ var timer = function () {
         charReady = false;
         obsReady = false;
         obs1Ready = false;
+        obs2Ready = false;
     }
 }
 
