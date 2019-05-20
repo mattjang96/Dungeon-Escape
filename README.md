@@ -130,7 +130,6 @@ The same idea applies to dragons.
 ## Further Improvements
 
 - Different levels with increasing difficulty
-- Multiple (moving) enemies 
 - Monsters with different type, health, etc.
 - Items + Boosts
 
