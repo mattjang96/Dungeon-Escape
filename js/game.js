@@ -263,7 +263,7 @@ var render = function () {
             gameOver.play();
       }
 
-    if (finished == true && monsterSlain >= 20) {
+    if (finished == true && monsterSlain >= 15) {
         ctx.fillText(
           `Congrats, You escaped safely! Rescued: ${monsterSlain} dragons.`,
           55,
@@ -273,7 +273,7 @@ var render = function () {
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
-    } else if (finished == true && monsterSlain < 20) {
+    } else if (finished == true && monsterSlain < 15) {
         ctx.fillText("You've failed to escape! Try again.", 118, 200);
         mainMusic.pause();
         mainMusic.currentTime = 0;
