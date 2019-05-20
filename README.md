@@ -6,7 +6,7 @@ Dungeon Escape was designed and implemented within a 4-day timeframe. Regardless
 
 Thanks for visiting!
 
-[Play Here]()
+[Play Here](https://mattjang96.github.io/Dungeon-Escape/)
 
 ![Game](https://s3-us-west-1.amazonaws.com/shuttr-dev-seeds/escape.png)
 
