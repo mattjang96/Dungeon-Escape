@@ -287,6 +287,7 @@ var finished = false;
 var timer = function () {
     randMov();
     time = time - 1; 
+    randMov();
     if (time <= 0) {
 
         clearInterval(timer);
@@ -313,6 +314,7 @@ var main = function () {
     render();
 
     requestAnimationFrame(main);
+    
 };
 
 var w = window;
