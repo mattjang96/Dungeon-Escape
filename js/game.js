@@ -112,6 +112,7 @@ var reset = function () {
     monster.x = 32 + (Math.random() * (canvas.width - 64));
     monster.y = 32 + (Math.random() * (canvas.height - 64));
     // randMov();
+    // randMov();
     // make sure when the zombies respawn, that it is not colliding immediately with the hero position (hero.x, hero.y)
     // if (obs.x != hero.x) { obs.x = 32 + Math.random() * (canvas.width - 64); }
     // if (obs.y != hero.y) { obs.y = 32 + Math.random() * (canvas.width - 64); }
