@@ -24,7 +24,7 @@ gameWin.volume = 0.4;
 
 
 var monsterSound = new Audio("./audio/monsterSound.mp3");
-monsterSound.volume = 0.5;
+monsterSound.volume = 0.4;
 
 
 var bgReady = false;
