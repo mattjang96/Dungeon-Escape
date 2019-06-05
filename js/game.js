@@ -288,7 +288,7 @@ var finished = false;
 var timer = function () {
     randMov();
     time = time - 1; 
-    randMov();
+    // randMov();
     if (time <= 0) {
 
         clearInterval(timer);
