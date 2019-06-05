@@ -176,7 +176,7 @@ var randMov = function() {
     }
 };
     
-    
+// move the hero
 var update = function (modifier) {
     if (38 in keysDown) {
         hero.y -= hero.speed * modifier;
@@ -203,7 +203,7 @@ var update = function (modifier) {
     }
 };
         
-        // Rendering
+// Rendering
 var render = function () {
     // console.log(mainMusic);
     // mainMusic.play(); // cue the music!
@@ -219,13 +219,16 @@ var render = function () {
     }
     // obstacle render
     if (obsReady) {
+        console.log(obs);
         ctx.drawImage(obsImage, obs.x, obs.y);
     }
     if (obs1Ready) {
-      ctx.drawImage(obs1Image, obs1.x, obs1.y);
+        // console.log("obs1 " + obs1);
+        ctx.drawImage(obs1Image, obs1.x, obs1.y);
     }
-
+    
     if (obs2Ready) {
+        // console.log("obs2 " + obs2);
       ctx.drawImage(obs2Image, obs2.x, obs2.y);
     }
 
@@ -317,17 +320,17 @@ musicbtn.addEventListener("click", () => {
     if (mainMusic.paused) {
         mainMusic.play();
         musicbtn.innerHTML = "Mute Music"
-        console.log("btn played");
+        // console.log("btn played");
     } else {
         mainMusic.pause();
-        console.log("btn paused");
+        // console.log("btn paused");
         musicbtn.innerHTML = "Play Music"
     }
 });
 
 var main = function () {
     if (!finished && !isClicked) {
-        console.log("play bgm");
+        // console.log("play bgm");
         mainMusic.play();
     }
     update(0.02); 
