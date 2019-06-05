@@ -6,11 +6,12 @@ canvas.height = 480; // y
 document.body.appendChild(canvas);
 // var frames = 500,
 //   r = setInterval(randMov, frames);
+var isClicked = false;
 
 var mainMusic = new Audio("./audio/music.mp3");
 mainMusic.loop = true;
 mainMusic.volume = 0.4;
-
+mainMusic.load();
 
 var gameOver = new Audio("./audio/gameOver.mp3");
 gameOver.loop = true;
@@ -19,7 +20,7 @@ gameOver.volume = 0.4;
 
 var gameWin = new Audio("./audio/gameWin.mp3");
 gameWin.loop = true;
-gameWin.volume = 0.4;
+gameWin.volume = 0.4; 
 
 
 var monsterSound = new Audio("./audio/monsterSound.mp3");
@@ -137,45 +138,45 @@ var reset = function () {
 var randMov = function() {
     var randDirection = Math.floor(Math.random() * 4 + 1);
     switch (randDirection) {
-        case 1: {
-            if (
-              obs.x + 64 < canvas.width - 64 &&
-              obs1.x - 64 > 1 && obs2.y + 64 < canvas.width - 64
+    case 1: {
+        if (
+            obs.x + 64 < canvas.width - 64 &&
+            obs1.x - 64 > 1 && obs2.y + 64 < canvas.width - 64
             ) {
-              obs.x += 64;
-              obs1.x -= 64;
-              obs2.y +=64;
+                obs.x += 64;
+                obs1.x -= 64;
+                obs2.y +=64;
             }
         }
         break;
         case 2: {
             if (obs.x - 64 > 1 && obs1.x + 64 < canvas.width - 64 && obs2.y - 64 > 1) {
-              obs.x -= 64;
-              obs1.x += 64;
-              obs2.y -= 64;
+                obs.x -= 64;
+                obs1.x += 64;
+                obs2.y -= 64;
             }
         }
         break;
         case 3: {
             if (obs.y + 64 < canvas.width - 64 && obs1.y - 64 > 1 && obs2.x + 64 < canvas.width - 64) {
-              obs.y += 64;
-              obs1.y -= 64;
-              obs2.x += 64;
+                obs.y += 64;
+                obs1.y -= 64;
+                obs2.x += 64;
             }
         }
         break;
         case 4: {
             if (obs.y - 64 > 1 && obs1.y + 64 < canvas.width - 64 && obs2.x - 64 > 1) {
-              obs.y -= 64;
-              obs1.y += 64;
-              obs2.x -= 64;
+                obs.y -= 64;
+                obs1.y += 64;
+                obs2.x -= 64;
             }
         }
         break;
     }
 };
-
-
+    
+    
 var update = function (modifier) {
     if (38 in keysDown) {
         hero.y -= hero.speed * modifier;
@@ -201,10 +202,12 @@ var update = function (modifier) {
         reset();
     }
 };
-
-// Rendering
+        
+        // Rendering
 var render = function () {
-    mainMusic.play(); // cue the music!
+    // console.log(mainMusic);
+    // mainMusic.play(); // cue the music!
+   
     if (bgReady) {
         ctx.drawImage(bgImage, 0, 0);
     }
@@ -270,7 +273,7 @@ var render = function () {
           55,
           220
         );
-        mainMusic.play();
+        // mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
@@ -308,8 +311,25 @@ var timer = function () {
 setInterval(timer, 1000);
 // setInterval(randMov, frames);
 
-var main = function () {
+var musicbtn = document.getElementById("musicbutt");
+musicbtn.addEventListener("click", () => {
+    isClicked = true;
+    if (mainMusic.paused) {
+        mainMusic.play();
+        musicbtn.innerHTML = "Mute Music"
+        console.log("btn played");
+    } else {
+        mainMusic.pause();
+        console.log("btn paused");
+        musicbtn.innerHTML = "Play Music"
+    }
+});
 
+var main = function () {
+    if (!finished && !isClicked) {
+        console.log("play bgm");
+        mainMusic.play();
+    }
     update(0.02); 
 
     render();
