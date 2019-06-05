@@ -15,7 +15,7 @@ mainMusic.load();
 
 var gameOver = new Audio("./audio/gameOver.mp3");
 gameOver.loop = true;
-gameOver.volume = 0.4;
+gameOver.volume = 0.3;
 
 
 var gameWin = new Audio("./audio/gameWin.mp3");
@@ -24,7 +24,7 @@ gameWin.volume = 0.4;
 
 
 var monsterSound = new Audio("./audio/monsterSound.mp3");
-monsterSound.volume = 0.3;
+monsterSound.volume = 0.1;
 
 
 var bgReady = false;
