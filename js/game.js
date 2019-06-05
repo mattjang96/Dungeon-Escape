@@ -10,7 +10,7 @@ var isClicked = false;
 
 var mainMusic = new Audio("./audio/music.mp3");
 mainMusic.loop = true;
-mainMusic.volume = 0.4;
+mainMusic.volume = 0.5;
 mainMusic.load();
 
 var gameOver = new Audio("./audio/gameOver.mp3");
