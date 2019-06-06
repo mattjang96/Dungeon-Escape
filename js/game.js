@@ -244,6 +244,7 @@ var render = function () {
       hero.y <= obs.y + 32 && obs.y <= hero.y + 32) {
             time = 0;
             finished = true; 
+            monsterSlain = 0;
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
             mainMusic.pause();
             mainMusic.currentTime = 0;
@@ -254,6 +255,7 @@ var render = function () {
       hero.y <= obs1.y + 32 && obs1.y <= hero.y + 32) {
             time = 0;
             finished = true; 
+            monsterSlain = 0;
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
             mainMusic.pause();
             mainMusic.currentTime = 0;
@@ -263,7 +265,8 @@ var render = function () {
       if (hero.x <= obs2.x + 32 && obs2.x <= hero.x + 32 &&
       hero.y <= obs2.y + 32 && obs2.y <= hero.y + 32) {
             time = 0;
-            finished = true; 
+            finished = true;
+            monsterSlain = 0; 
             ctx.fillText("You've failed to escape! Try again.", 118, 200);
             mainMusic.pause();
             mainMusic.currentTime = 0;
@@ -276,17 +279,20 @@ var render = function () {
           55,
           220
         );
-        // mainMusic.play();
+        mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameWin.play();
     } else if (finished == true && monsterSlain < 15) {
         ctx.fillText("You've failed to escape! Try again.", 118, 200);
+        mainMusic.play();
         mainMusic.pause();
         mainMusic.currentTime = 0;
         gameOver.play();
       }
-
+      // currently, if you have 15 or greater dragons saved,
+      // and collide with a monster,
+      // you will still win & both gameOver/gameWin music will play.
 };
 
 var time = 35; 
