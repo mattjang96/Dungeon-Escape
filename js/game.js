@@ -290,9 +290,6 @@ var render = function () {
         mainMusic.currentTime = 0;
         gameOver.play();
       }
-      // currently, if you have 15 or greater dragons saved,
-      // and collide with a monster,
-      // you will still win & both gameOver/gameWin music will play.
 };
 
 var time = 35; 
