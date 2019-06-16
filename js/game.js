@@ -146,6 +146,8 @@ var randMov = function() {
                 obs.x += 64;
                 obs1.x -= 64;
                 obs2.y +=64;
+            } else {
+                randMov();
             }
         }
         break;
@@ -154,6 +156,8 @@ var randMov = function() {
                 obs.x -= 64;
                 obs1.x += 64;
                 obs2.y -= 64;
+            } else {
+                randMov();
             }
         }
         break;
@@ -162,6 +166,8 @@ var randMov = function() {
                 obs.y += 64;
                 obs1.y -= 64;
                 obs2.x += 64;
+            } else {
+                randMov();
             }
         }
         break;
@@ -170,6 +176,8 @@ var randMov = function() {
                 obs.y -= 64;
                 obs1.y += 64;
                 obs2.x -= 64;
+            } else {
+                randMov();
             }
         }
         break;
