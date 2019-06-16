@@ -149,8 +149,8 @@ var randMov = function() {
             } else {
                 randMov();
             }
+            break;
     }
-        break;
     case 2: {
         if (obs.x - 64 > 1 && obs1.x + 64 < canvas.width - 64 && obs2.y - 64 > 1) {
             obs.x -= 64;
@@ -159,8 +159,8 @@ var randMov = function() {
         } else {
             randMov();
         }
-    }
         break;
+    }
     case 3: {
         if (obs.y + 64 < canvas.width - 64 && obs1.y - 64 > 1 && obs2.x + 64 < canvas.width - 64) {
             obs.y += 64;
@@ -169,8 +169,8 @@ var randMov = function() {
         } else {
             randMov();
         }
-    }
         break;
+    }
     case 4: {
         if (obs.y - 64 > 1 && obs1.y + 64 < canvas.width - 64 && obs2.x - 64 > 1) {
             obs.y -= 64;
@@ -179,8 +179,8 @@ var randMov = function() {
         } else {
             randMov();
         }
-    }
         break;
+    }
     }
 };
     
